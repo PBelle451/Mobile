@@ -13,20 +13,20 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const CatCard(title: 'Gatos do Balacobaco'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+class CatCard extends StatefulWidget {
+  const CatCard({super.key, required this.title});
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<CatCard> createState() => _CatCardState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _CatCardState extends State<CatCard> {
   int _counter = 0;
 
   void _incrementCounter() {
@@ -43,18 +43,19 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Center(
         child:
-        ListView(
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Container(
-              height: 300,
-                child: Card(
+            Card(
+                child: Container(
                 child: Column(
-                  mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    Image.network('https://cataas.com/cat', fit: BoxFit.fitHeight),
+                    Image.network('https://cataas.com/cat', fit: BoxFit.scaleDown),
                     Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("Negão"),
+                        Text("Carlinhos",
+                        style: Theme.of(context).textTheme.headlineSmall,
+                        ),
                         ElevatedButton(onPressed: () {}, child: Text("Adotar"))
                       ],
                     )
@@ -64,11 +65,6 @@ class _MyHomePageState extends State<MyHomePage> {
     ),
     ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
